@@ -1,0 +1,9 @@
+		half4 GetTriplanar(sampler2D samplerX, sampler2D samplerY, sampler2D samplerZ, 
+						   half3 vertex, half3 blending, half scale, half offset)
+		{
+			half4 xAxis = tex2D(samplerX, (vertex.yz * scale) + offset);
+			half4 yAxis = tex2D(samplerY, (vertex.xz * scale) + offset);
+			half4 zAxis = tex2D(samplerZ, (vertex.xy * scale) + offset);
+
+			return xAxis * blending.x + yAxis * blending.y + zAxis * blending.z;
+		}
